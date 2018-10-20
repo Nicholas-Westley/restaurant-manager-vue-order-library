@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <controller></controller>
+      <controller :assetsUrl="assetsUrl"/>
   </div>
 </template>
 
@@ -9,6 +9,7 @@ import Controller from './components/Controller';
 
 export default {
     name: 'app',
+    props: ['assetsUrl'],
     components: {
         Controller,
     },

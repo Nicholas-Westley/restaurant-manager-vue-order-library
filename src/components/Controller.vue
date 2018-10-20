@@ -3,9 +3,11 @@
         <div style="display: flex">
             <!-- RECIPE LIST -->
             <recipe-list
+                v-if="recipes && recipes.length"
                 :recipes="items"
                 class="order-column recipe-list"
                 @recipeSelected="recipeSelected"
+                :assetsUrl="assetsUrl"
             />
 
             <!-- ORDER IN PROCESS -->
@@ -36,6 +38,7 @@
     import ConfirmItemOrder from './ConfirmItemOrder';
     import Checkout from './Checkout';
     export default {
+        props: ['assetsUrl'],
         components: { RecipeList, ConfirmItemOrder, Checkout },
         data() {
             return {
@@ -81,9 +84,11 @@
                 return console.error('ADD AXIOS TO VUE PROTOTYPE');
             }
             // TODO GET/SET CURRENT RESTAURANT FROM LIST
-            const restaurant = 7;
-            this.axios.get(`restaurants/${restaurant}/recipes`)
-                .then(response => (this.recipes = response.data));
+            // const restaurant = 7;
+            this.axios.get('restaurants/7/recipes')
+                .then(response => {
+                    this.recipes = response.data;
+                });
         },
     };
 </script>

@@ -1,9 +1,17 @@
 import Vue from 'vue';
 import App from './App.vue';
+import './plugins/vuetify'
 
 Vue.config.productionTip = false;
-Vue.prototype.axios = require('axios');
+const axios =  require('axios');
+axios.defaults.baseURL = `http://food-order-tracker.development/api/`;
+Vue.prototype.axios = axios;
+
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app');
+    el: '#app',
+    components: {App},
+    template: '<App assetsUrl="http://food-order-tracker.development/"/>',
+});
+
+

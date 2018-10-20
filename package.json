@@ -1,13 +1,16 @@
 {
     "name": "restaurant-manager-vue-order-library",
     "main": "./dist/restaurant-manager-vue-order-library.common.js",
-    "version": "0.1.3",
+    "version": "0.1.7",
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
-        "build-library": "vue-cli-service build --target lib --name restaurant-manager-vue-order-library"
+        "watch": "npm run serve --watch",
+        "build-library": "vue-cli-service build --target lib --name restaurant-manager-vue-order-library",
+        "build-bump-publish": "npm run build-library && npm version patch && npm publish --access public",
+        "build-publish": "npm run build-library && npm publish --access public"
     },
     "dependencies": {
         "axios": "^0.18.0",
@@ -18,7 +21,8 @@
         "eslint-loader": "^2.1.1",
         "eslint-plugin-html": "^4.0.6",
         "eslint-plugin-import": "^2.14.0",
-        "vue": "^2.5.17"
+        "vue": "^2.5.17",
+        "vuetify": "^1.2.0"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^3.0.5",

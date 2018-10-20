@@ -3,7 +3,7 @@
         <v-flex v-for="recipe in recipes" :key="recipe.id" xs6 style="padding: 12px; max-width: 500px">
             <v-card >
                 <v-img
-                    :src="'/assets/images/' + recipe.image"
+                    :src="assetsUrl + 'assets/images/' + recipe.image"
                     aspect-ratio="3"
                 ></v-img>
 
@@ -71,7 +71,7 @@
 
 <script>
     export default {
-        props: ['recipes'],
+        props: ['recipes', 'assetsUrl'],
     };
 </script>
 
