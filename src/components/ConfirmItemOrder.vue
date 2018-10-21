@@ -4,28 +4,20 @@
         <v-dialog v-model="dialog" max-width="500px">
             <v-card>
                 <v-card-title class="headline grey" primary-title>
-                    <v-label>
-                        Add This Item to Order?
-                    </v-label>
+                    Add This Item to Order?
                 </v-card-title>
 
                 <v-card-text>
 
                     <h1>
-                        <v-label>
-                            {{ selectedRecipe.name }}
-                        </v-label>
+                        {{ selectedRecipe.name }}
                         <span style="font-size: 60%">
-                            <v-label>
-                                with
-                            </v-label>
+                            with
                         </span>
                     </h1>
                     <div v-for="ingredient in selectedRecipe.ingredients.filter(i => i.selected)">
                         <label class="ingredient-label">
-                            <v-label>
-                                {{ ingredient.name }}
-                            </v-label>
+                            {{ ingredient.name }}
                         </label>
                     </div>
                 </v-card-text>

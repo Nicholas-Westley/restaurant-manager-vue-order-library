@@ -12,7 +12,7 @@
         <!-- LIST CURRENT -->
         <div class="order-item" v-for="(item, index) in currentOrder">
             <h4>
-                <v-label>{{index+1 }}: {{ item.name }}</v-label>
+                {{index+1 }}: {{ item.name }}
                 <div
                     class="float-right"
                     @click="$emit('itemRemoved', index)"
@@ -26,9 +26,7 @@
             <div class="ingredients-list">
                 <div v-for="ingredient in item.ingredients">
                     <span :class="ingredient.selected ? 'hasIngredient' : 'notIngredient'">
-                        <v-label>
-                            {{ ingredient.name }}
-                        </v-label>
+                        {{ ingredient.name }}
                     </span>
                 </div>
             </div>

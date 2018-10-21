@@ -7,41 +7,35 @@
                     aspect-ratio="3"
                 ></v-img>
 
-                <v-card-title primary-title>
-                    <div>
-                        <h1 class="headline mb-0">
-                            <v-label>
-                                {{ recipe.name }}
-                            </v-label>
-                        </h1>
-                    </div>
-                </v-card-title>
+                <h1>
+                    {{ recipe.name }}
+                </h1>
                 <v-card-text style="height: 260px">
-                    <div style="display: flex">
-                        <div style="min-width: 200px">
+                    <div class="components-container">
+                        <div class="components-list">
                             <h4 color="primary">
                                 Components
                             </h4>
-                            <div v-for="ingredient in recipe.ingredients.filter(i => !i.optional)">
+                            <template v-for="ingredient in recipe.ingredients.filter(i => !i.optional)">
                                 <v-checkbox
                                     :label="ingredient.name"
                                     v-model="ingredient.selected"
                                     disabled
                                 ></v-checkbox>
-                            </div>
+                            </template>
                         </div>
-                        <div>
-                            <h4 color="primary">
+                        <div class="components-list">
+                            <h4 color="primary" class="configurable-components">
                                 Configurable Components (free)
                             </h4>
-                            <div v-for="ingredient in recipe.ingredients.filter(i => i.optional)">
+                            <template v-for="ingredient in recipe.ingredients.filter(i => i.optional)">
 
                                 <v-checkbox
                                     :label="ingredient.name"
                                     v-model="ingredient.selected"
                                 ></v-checkbox>
 
-                            </div>
+                            </template>
                         </div>
                     </div>
                 </v-card-text>
@@ -74,20 +68,27 @@
     };
 </script>
 
-<style >
-    .v-input--selection-controls .v-input__slot,
-    .v-input__slot, .v-input__slot {
+<style lang="scss">
+    .v-input--selection-controls, .v-input__slot {
         margin: 0 !important;
-        padding: 0 !important;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
     }
-    .v-messages { display: none; }
-    .v-label {
-        font-size: 150%;
-        padding-top: 4px;
+    .v-messages { display: none !important; }
+    h1 {
+        padding: 12px 12px 0 12px;
+    }
+    .components-container {
+        display: flex;
+        .components-list {
+            flex: 1;
+        }
     }
 
-
+    .ingredient-checkbox {
+        color: red !important;
+    }
+    .configurable-components {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
