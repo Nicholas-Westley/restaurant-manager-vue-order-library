@@ -14,9 +14,8 @@
             <h4>
                 {{index+1 }}: {{ item.name }}
                 <div
-                    class="float-right"
+                    class="remove-item"
                     @click="$emit('itemRemoved', index)"
-                    style="cursor: pointer"
                     title="Remove Item"
                 >
                     x
@@ -25,7 +24,7 @@
             <!--<h5>{{ item.description }}</h5>-->
             <div class="ingredients-list">
                 <div v-for="ingredient in item.ingredients">
-                    <span :class="ingredient.selected ? 'hasIngredient' : 'notIngredient'">
+                    <span v-if="ingredient.selected">
                         {{ ingredient.name }}
                     </span>
                 </div>
@@ -51,11 +50,9 @@ export default {
     .ingredients-list {
         padding: 0 16px;
     }
-    .hasIngredient {
-        font-weight: bold;
-    }
-    .notIngredient {
-        color: #ddd;
-        text-decoration: line-through;
+    .remove-item {
+        cursor: pointer;
+        float: right;
+        color: red;
     }
 </style>

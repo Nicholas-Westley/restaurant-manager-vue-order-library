@@ -26,7 +26,7 @@
                         </div>
                         <div class="components-list">
                             <h4 color="primary" class="configurable-components">
-                                Configurable Components (free)
+                                Extra Components (free)
                             </h4>
                             <template v-for="ingredient in recipe.ingredients.filter(i => i.optional)">
 
