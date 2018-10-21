@@ -12,9 +12,12 @@ Vue.prototype.axios = axios;
 new Vue({
     el: '#app',
     components: { App },
+    data() {
+        return { url: Config.baseUrl};
+    },
     template: `
         <v-app id="app">
-            <App :assetsUrl="Config.baseUrl"/>
+            <App :assetsUrl="url"/>
         </v-app>
     `,
 });
