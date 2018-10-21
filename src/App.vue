@@ -6,7 +6,6 @@
 
 <script>
 import Controller from './components/Controller';
-
 export default {
     name: 'app',
     props: ['assetsUrl'],

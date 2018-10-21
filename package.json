@@ -1,7 +1,7 @@
 {
     "name": "restaurant-manager-vue-order-library",
     "main": "./dist/restaurant-manager-vue-order-library.common.js",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve",
@@ -21,6 +21,7 @@
         "eslint-loader": "^2.1.1",
         "eslint-plugin-html": "^4.0.6",
         "eslint-plugin-import": "^2.14.0",
+        "material-design-icons-iconfont": "^3.0.3",
         "vue": "^2.5.17",
         "vuetify": "^1.2.0"
     },

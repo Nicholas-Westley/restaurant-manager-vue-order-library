@@ -14,7 +14,6 @@
                                 {{ recipe.name }}
                             </v-label>
                         </h1>
-                        <!--<div>{{ recipe.description }} </div>-->
                     </div>
                 </v-card-title>
                 <v-card-text style="height: 260px">
