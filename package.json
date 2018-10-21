@@ -1,7 +1,7 @@
 {
     "name": "restaurant-manager-vue-order-library",
     "main": "./dist/restaurant-manager-vue-order-library.common.js",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve",
