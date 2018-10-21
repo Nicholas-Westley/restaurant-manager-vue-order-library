@@ -1,25 +1,26 @@
 <template>
     <div class="order-pane" data-app>
-        <div style="display: flex">
+        <div style="display: flex; height: 100%;">
             <!-- RECIPE LIST -->
             <recipe-list
                 v-if="recipes && recipes.length"
-                :recipes="items"
+                :recipes="recipes"
                 class="order-column recipe-list"
                 @recipeSelected="recipeSelected"
+                @recipeReset="resetSelectedIngredients"
                 :assetsUrl="assetsUrl"
             />
 
             <!-- ORDER IN PROCESS -->
-            <checkout
-                v-if="currentOrder.length"
-                class="order-column order-being-created"
-                :currentOrder="currentOrder"
-                :submittable="selectedRecipe !== null"
-                :selectedRecipe="selectedRecipe"
-                @itemRemoved="itemRemoved"
-                @submitOrder="submitOrder"
-            />
+            <div class="order-column order-being-created">
+                <checkout
+                    :currentOrder="currentOrder"
+                    :submittable="selectedRecipe !== null"
+                    :selectedRecipe="selectedRecipe"
+                    @itemRemoved="itemRemoved"
+                    @submitOrder="submitOrder"
+                />
+            </div>
         </div>
 
         <!-- CONFIRM ITEM TO ADD TO ORDER -->
@@ -45,12 +46,13 @@
                 selectedRecipe: null,
                 recipes: [],
                 currentOrder: [],
-                items: [],
             };
         },
         watch: {
             recipes() {
-                this.getItems();
+                this.recipes.forEach(recipe => {
+                    this.resetSelectedIngredients(recipe);
+                });
             },
         },
         methods: {
@@ -58,7 +60,10 @@
                 this.selectedRecipe = { ...recipe };
             },
             itemAdded() {
-                if (this.selectedRecipe) this.currentOrder.push({ ...this.selectedRecipe });
+                if (!this.selectedRecipe) return;
+                const item = JSON.parse(JSON.stringify(this.selectedRecipe));
+                this.currentOrder.push(item);
+                this.resetSelectedIngredients(this.selectedRecipe);
                 this.selectedRecipe = null;
             },
             itemRemoved(index) {
@@ -70,12 +75,10 @@
                     .catch(error => console.log(error.response));
                 this.currentOrder = [];
             },
-            getItems() {
-                this.items = JSON.parse(JSON.stringify(this.recipes));
-                this.items.forEach(item => {
-                    item.ingredients.forEach(ingredient => {
-                        ingredient.selected = ingredient.selected_by_default;
-                    });
+            resetSelectedIngredients(recipe) {
+                recipe.ingredients.forEach(ingredient => {
+                    console.log(`setting ${ingredient.name} ${ingredient.selected_by_default}`);
+                    ingredient.selected = ingredient.selected_by_default;
                 });
             },
         },
@@ -94,12 +97,17 @@
 </script>
 
 <style scoped>
+    .order-pane {
+        height: 100%;
+    }
     .recipe-list {
         flex: 3;
+        background-color: #333;
+        overflow-y: auto;
+        height: 100%;
     }
     .order-being-created {
         flex: 1;
+        background-color: white;
     }
-
-
 </style>

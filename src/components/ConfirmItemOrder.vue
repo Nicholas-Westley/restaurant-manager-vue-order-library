@@ -3,24 +3,24 @@
 
         <v-dialog v-model="dialog" max-width="500px">
             <v-card>
-                <v-card-title class="headline grey" primary-title>
+                <v-card-title class="headline" primary-title>
                     Add This Item to Order?
                 </v-card-title>
 
-                <v-card-text>
+                <v-divider></v-divider>
 
-                    <h1>
+                <v-card-text>
+                    <h1 style="margin-top: 0">
                         {{ selectedRecipe.name }}
-                        <span style="font-size: 60%">
-                            with
-                        </span>
                     </h1>
                     <div v-for="ingredient in selectedRecipe.ingredients.filter(i => i.selected)">
-                        <label class="ingredient-label">
+                        <div class="ingredient-label">
                             {{ ingredient.name }}
-                        </label>
+                        </div>
                     </div>
                 </v-card-text>
+
+                <v-divider></v-divider>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -68,4 +68,8 @@
 </script>
 
 <style scoped>
+    .ingredient-label {
+        padding-left: 16px;
+    }
+
 </style>

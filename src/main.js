@@ -13,7 +13,7 @@ new Vue({
     el: '#app',
     components: { App },
     data() {
-        return { url: Config.baseUrl};
+        return { url: Config.baseUrl };
     },
     template: `
         <v-app id="app">
