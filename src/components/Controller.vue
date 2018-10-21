@@ -7,7 +7,6 @@
                 :recipes="recipes"
                 class="order-column recipe-list"
                 @recipeSelected="recipeSelected"
-                @recipeReset="resetSelectedIngredients"
                 :assetsUrl="assetsUrl"
             />
 
@@ -77,7 +76,6 @@
             },
             resetSelectedIngredients(recipe) {
                 recipe.ingredients.forEach(ingredient => {
-                    console.log(`setting ${ingredient.name} ${ingredient.selected_by_default}`);
                     ingredient.selected = ingredient.selected_by_default;
                 });
             },
@@ -104,7 +102,7 @@
         flex: 3;
         background-color: #333;
         overflow-y: auto;
-        height: 100%;
+        height: 100vh;
     }
     .order-being-created {
         flex: 1;
