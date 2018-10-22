@@ -62,7 +62,8 @@
                 if (!this.selectedRecipe) return;
                 const item = JSON.parse(JSON.stringify(this.selectedRecipe));
                 this.currentOrder.push(item);
-                this.resetSelectedIngredients(this.selectedRecipe);
+                this.resetSelectedIngredients(this.recipes.find(r => r.id === this.selectedRecipe.id));
+                this.recipes = JSON.parse(JSON.stringify(this.recipes));
                 this.selectedRecipe = null;
             },
             itemRemoved(index) {

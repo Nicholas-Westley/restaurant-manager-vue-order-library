@@ -32,7 +32,6 @@
                             Extra Components (free)
                         </h4>
                         <template v-for="ingredient in recipe.ingredients.filter(i => i.optional)">
-
                             <v-checkbox
                                 :label="ingredient.name"
                                 v-model="ingredient.selected"
@@ -50,14 +49,6 @@
                         >
                         Add To Order
                     </v-btn>
-                    <!--<v-btn-->
-                        <!--@click="$emit('recipeReset', recipe)"-->
-                        <!--large-->
-                        <!--flat-->
-                        <!--color="primary"-->
-                    <!--&gt;-->
-                        <!--Reset Item-->
-                    <!--</v-btn>-->
                 </v-card-actions>
             </v-card>
         </v-flex>
