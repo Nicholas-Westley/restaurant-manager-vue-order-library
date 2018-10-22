@@ -23,11 +23,16 @@
         </div>
 
         <!-- CONFIRM ITEM TO ADD TO ORDER -->
-        <confirm-item-order
+        <confirm-item-dialog
             v-if="selectedRecipe"
             class="order-column add-item-to-order"
             :selectedRecipe="selectedRecipe"
             @itemAdded="itemAdded"
+        />
+
+        <!-- ORDER CONFIRMED DIALOG -->
+        <order-confirmed-dialog
+            :confirmedOrder="confirmedOrder"
         />
 
     </div>
@@ -35,16 +40,18 @@
 
 <script>
     import RecipeList from './RecipeList';
-    import ConfirmItemOrder from './ConfirmItemOrder';
+    import ConfirmItemDialog from './ConfirmItemDialog';
     import Checkout from './Checkout';
+    import OrderConfirmedDialog from "./OrderConfirmedDialog";
     export default {
         props: ['assetsUrl'],
-        components: { RecipeList, ConfirmItemOrder, Checkout },
+        components: {OrderConfirmedDialog, RecipeList, ConfirmItemDialog, Checkout },
         data() {
             return {
                 selectedRecipe: null,
                 recipes: [],
                 currentOrder: [],
+                confirmedOrder: null,
             };
         },
         watch: {
@@ -71,7 +78,9 @@
             },
             submitOrder() {
                 this.axios.post('orders', { items: this.currentOrder })
-                    .then(response => console.log(response))
+                    .then(response => {
+                        this.confirmedOrder = response.data.order
+                    })
                     .catch(error => console.log(error.response));
                 this.currentOrder = [];
             },
