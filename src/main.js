@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import './plugins/vuetify';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
+import './test.css';
 import Config from './config';
 
 Vue.config.productionTip = false;
