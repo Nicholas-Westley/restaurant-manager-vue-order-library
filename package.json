@@ -10,7 +10,8 @@
         "watch": "npm run serve --watch",
         "build-library": "vue-cli-service build --target lib --name restaurant-manager-vue-order-library",
         "build-bump-publish": "npm run build-library && npm version patch && npm publish --access public",
-        "build-publish": "npm run build-library && npm publish --access public"
+        "build-publish": "npm run build-library && npm publish --access public",
+        "go": "npm run watch"
     },
     "dependencies": {
         "axios": "^0.18.0",

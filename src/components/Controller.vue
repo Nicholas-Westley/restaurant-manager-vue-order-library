@@ -44,8 +44,11 @@
     import Checkout from './Checkout';
     import OrderConfirmedDialog from "./OrderConfirmedDialog";
     export default {
-        props: ['assetsUrl'],
-        components: {OrderConfirmedDialog, RecipeList, ConfirmItemDialog, Checkout },
+        props: {
+            assetsUrl: String,
+            restaurantId: Number,
+        },
+        components: { OrderConfirmedDialog, RecipeList, ConfirmItemDialog, Checkout },
         data() {
             return {
                 selectedRecipe: null,
@@ -79,7 +82,7 @@
             submitOrder() {
                 this.axios.post('orders', { items: this.currentOrder })
                     .then(response => {
-                        this.confirmedOrder = response.data.order
+                        this.confirmedOrder = response.data.order;
                     })
                     .catch(error => console.log(error.response));
                 this.currentOrder = [];
@@ -94,9 +97,7 @@
             if (!this.axios) {
                 return console.error('ADD AXIOS TO VUE PROTOTYPE');
             }
-            // TODO GET/SET CURRENT RESTAURANT FROM LIST
-            // const restaurant = 7;
-            this.axios.get('restaurants/7/recipes')
+            this.axios.get(`restaurants/${this.restaurantId}/recipes`)
                 .then(response => {
                     this.recipes = response.data;
                 });

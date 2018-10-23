@@ -18,7 +18,10 @@ new Vue({
     },
     template: `
         <v-app id="app">
-            <App :assetsUrl="url"/>
+            <App 
+                :assetsUrl="url"
+                :restaurantId="7"
+            />
         </v-app>
     `,
 });

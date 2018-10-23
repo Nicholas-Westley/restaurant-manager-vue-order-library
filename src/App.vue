@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-      <controller :assetsUrl="assetsUrl"/>
+      <controller
+          :assetsUrl="assetsUrl"
+          :restaurantId="restaurantId"/>
   </div>
 </template>
 
@@ -8,7 +10,10 @@
 import Controller from './components/Controller';
 export default {
     name: 'app',
-    props: ['assetsUrl'],
+    props: {
+        assetsUrl: String,
+        restaurantId: Number,
+    },
     components: {
         Controller,
     },
